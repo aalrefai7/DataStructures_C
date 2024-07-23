@@ -6,6 +6,7 @@ const int ARRAYSIZE = 5;
 void printStaticArray(int arr[], int size);
 void insertElement(int arr[], int* size, int index, int element);
 void deleteElement(int arr[], int* size, int index);
+int searchElement(int arr[], int size, int element);
 
 int main() {
 
@@ -26,6 +27,16 @@ int main() {
     deleteElement(staticArray, &staticSize, 3);
     printf("After deleting element at index 3:\n");
     printStaticArray(staticArray, staticSize);
+
+    // Search element
+    int elementToSearch = 30;
+    int index = searchElement(staticArray, staticSize, elementToSearch);
+    if (index != -1) {
+        printf("Element %d found at index %d.\n", elementToSearch, index);
+    }
+    else {
+        printf("Element %d not found in the array.\n", elementToSearch);
+    }
 
 	return 0;
 }
@@ -62,4 +73,13 @@ void deleteElement(int arr[], int* size, int index) {
         arr[i] = arr[i + 1];
     }
     *size -= 1; // Update the size of the array
+}
+
+int searchElement(int arr[], int size, int element) {
+    for (int i = 0; i < size; ++i) {
+        if (arr[i] == element) {
+            return i; // Return index of the element if found
+        }
+    }
+    return -1; // Return -1 if element is not found
 }
