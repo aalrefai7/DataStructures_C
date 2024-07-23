@@ -13,6 +13,12 @@ int main() {
     int staticSize = sizeof(staticArray) / sizeof(staticArray[0]);
 
     // Print static array elements
+    printf("Initial static array:\n");
+    printStaticArray(staticArray, staticSize);
+
+    // Insert element
+    insertElement(staticArray, &staticSize, 2, 25);
+    printf("After inserting 25 at index 2:\n");
     printStaticArray(staticArray, staticSize);
 
 	return 0;
