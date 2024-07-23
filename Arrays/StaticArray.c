@@ -5,6 +5,7 @@ const int ARRAYSIZE = 5;
 // Function prototypes
 void printStaticArray(int arr[], int size);
 void insertElement(int arr[], int* size, int index, int element);
+void deleteElement(int arr[], int* size, int index);
 
 int main() {
 
@@ -19,6 +20,11 @@ int main() {
     // Insert element
     insertElement(staticArray, &staticSize, 2, 25);
     printf("After inserting 25 at index 2:\n");
+    printStaticArray(staticArray, staticSize);
+
+    // Delete element
+    deleteElement(staticArray, &staticSize, 3);
+    printf("After deleting element at index 3:\n");
     printStaticArray(staticArray, staticSize);
 
 	return 0;
@@ -44,4 +50,16 @@ void insertElement(int arr[], int* size, int index, int element) {
     // Insert the new element
     arr[index] = element;
     *size += 1; // Update the size of the array
+}
+
+void deleteElement(int arr[], int* size, int index) {
+    if (index < 0 || index >= *size) {
+        printf("Invalid index for deletion.\n");
+        return;
+    }
+    // Shift elements to the left to overwrite the deleted element
+    for (int i = index; i < *size - 1; ++i) {
+        arr[i] = arr[i + 1];
+    }
+    *size -= 1; // Update the size of the array
 }
