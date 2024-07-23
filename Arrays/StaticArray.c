@@ -4,6 +4,7 @@ const int ARRAYSIZE = 5;
 
 // Function prototypes
 void printStaticArray(int arr[], int size);
+void insertElement(int arr[], int* size, int index, int element);
 
 int main() {
 
@@ -23,4 +24,18 @@ void printStaticArray(int arr[], int size) {
         printf("arr[%d] = %d\n", i, arr[i]);
     }
     printf("\n");
+}
+
+void insertElement(int arr[], int* size, int index, int element) {
+    if (index < 0 || index > *size) {
+        printf("Invalid index for insertion.\n");
+        return;
+    }
+    // Shift elements to the right to make space for the new element
+    for (int i = *size; i > index; --i) {
+        arr[i] = arr[i - 1];
+    }
+    // Insert the new element
+    arr[index] = element;
+    *size += 1; // Update the size of the array
 }
